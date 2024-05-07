@@ -5,6 +5,7 @@ import Header from "../../components/Header";
 import { useTheme } from "@mui/material";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { io } from "socket.io-client";
 
 const Tables = () => {
   const theme = useTheme();
@@ -14,11 +15,25 @@ const Tables = () => {
 
   useEffect(() => {
     fetchData();
+
+    // Set up websocket connection
+    const socket = io("ws://localhost:3001");
+    
+    // Listen for 'update' event from server
+    socket.on('update', (newData) => {
+      setData(newData);
+      console.log(newData);
+    });
+
+    // Clean up websocket connection
+    return () => {
+      socket.disconnect();
+    };
   }, []);
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://localhost:3001/drone/data');
+      const response = await axios.get('http://103.246.107.35:3002/drone/data');
       setData(response.data.data);
       console.log(response.data)
     } catch (error) {
@@ -27,9 +42,11 @@ const Tables = () => {
   };
 
   const columns = [
-    { field: "no", headerName: "No" },
+    { field: "nomor", headerName: "No", align :"center", headerAlign: "center" },
     { field: "id_iot", headerName: "ID IoT" },
-    { field: "timestamp", headerName: "Timestamp",flex:1},
+    { field: "timestamp", headerName: "Timestamp", flex: 0.5, align: "center", headerAlign: "center"},
+    { field: "longitude", headerName: "Longitude",},
+    { field: "latitude", headerName: "Latitude"},
     { field: "ch4", headerName: "CH4" },
     { field: "co2", headerName: "CO2" },
     { field: "n2o", headerName: "N2O" },
@@ -77,7 +94,7 @@ const Tables = () => {
           rows={data}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
-          getRowId={(row) => row.no} // Menggunakan properti 'no' sebagai id
+          getRowId={(row) => row.nomor} // Menggunakan properti 'no' sebagai id
         />
 
       </Box>
