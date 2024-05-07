@@ -3,9 +3,6 @@ import { Routes, Route } from "react-router-dom";
 import Topbar from "./scenes/global/Topbar";
 import Sidebar from "./scenes/global/Sidebar";
 import Dashboard from "./scenes/dashboard";
-import Invoices from "./scenes/invoices";
-import Contacts from "./scenes/contacts";
-import Bar from "./scenes/bar";
 import Form from "./scenes/form";
 import Line from "./scenes/line";
 import Tables from "./scenes/table";
@@ -29,10 +26,7 @@ function App() {
             <Topbar setIsSidebar={setIsSidebar} />
             <Routes>
               <Route path="/" element={<Dashboard />} />
-              <Route path="/contacts" element={<Contacts />} />
-              <Route path="/invoices" element={<Invoices />} />
               <Route path="/form" element={<Form />} />
-              <Route path="/bar" element={<Bar />} />
               <Route path="/table" element={<Tables />} />
               <Route path="/line" element={<Line />} />
               <Route path="/faq" element={<FAQ />} />
