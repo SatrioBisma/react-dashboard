@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Gunakan image node.js versi terbaru sebagai dasar
 FROM node:12
 
@@ -18,3 +19,16 @@ EXPOSE 3000
 
 # Perintah untuk menjalankan aplikasi Anda
 CMD ["npm", "run", "dev"]
+=======
+FROM node:16.12
+
+WORKDIR /usr/src/app
+
+COPY . .
+
+RUN npm install
+
+EXPOSE 3000
+
+CMD ["npm", "run", "start"]
+>>>>>>> b840f88ccda34bb1c852e68e88a04d58e31a5260

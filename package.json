@@ -34,12 +34,19 @@
     "react-router-dom": "^6.3.0",
     "react-script": "^2.0.5",
     "react-scripts": "5.0.1",
+<<<<<<< HEAD
+=======
+    "script": "^0.1.4",
+>>>>>>> b840f88ccda34bb1c852e68e88a04d58e31a5260
     "socket.io-client": "^4.7.5",
     "web-vitals": "^2.1.4",
     "yup": "^0.32.11"
   },
   "scripts": {
+<<<<<<< HEAD
     "dev":"react-scripts start",
+=======
+>>>>>>> b840f88ccda34bb1c852e68e88a04d58e31a5260
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

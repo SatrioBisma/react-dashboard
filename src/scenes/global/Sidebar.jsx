@@ -16,7 +16,7 @@ import TimelineOutlinedIcon from "@mui/icons-material/TimelineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import MapOutlinedIcon from "@mui/icons-material/MapOutlined";
 
-const Item = ({ title, to, icon, selected, setSelected }) => {
+const Item = ({ title, to, icon, selected, setSelected }) => {  
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   return (
@@ -106,7 +106,11 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
+<<<<<<< HEAD
 
+=======
+                  
+>>>>>>> b840f88ccda34bb1c852e68e88a04d58e31a5260
                 </Typography>
                 <Typography variant="h5" color={colors.greenAccent[500]}>
                   Green House Gases
@@ -123,8 +127,12 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
+<<<<<<< HEAD
             
             <Typography
+=======
+             <Typography
+>>>>>>> b840f88ccda34bb1c852e68e88a04d58e31a5260
               variant="h6"
               color={colors.grey[300]}
               sx={{ m: "15px 0 5px 20px" }}
@@ -135,10 +143,21 @@ const Sidebar = () => {
               title="Tables"
               to="/table"
               icon={<TableChartOutlinedIcon />}
+<<<<<<< HEAD
+=======
+              selected={selected}
+              setSelected={setSelected}
+            />
+             <Item
+              title="Geography Chart"
+              to="/geography"
+              icon={<MapOutlinedIcon />}
+>>>>>>> b840f88ccda34bb1c852e68e88a04d58e31a5260
               selected={selected}
               setSelected={setSelected}
             />
             <Item
+<<<<<<< HEAD
               title="Geography Chart"
               to="/geography"
               icon={<MapOutlinedIcon />}
@@ -146,6 +165,8 @@ const Sidebar = () => {
               setSelected={setSelected}
             />
             <Item
+=======
+>>>>>>> b840f88ccda34bb1c852e68e88a04d58e31a5260
               title="Line Chart"
               to="/line"
               icon={<TimelineOutlinedIcon />}
@@ -181,8 +202,11 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> b840f88ccda34bb1c852e68e88a04d58e31a5260
           </Box>
         </Menu>
       </ProSidebar>
