@@ -12,41 +12,48 @@ const Tables = () => {
   const colors = tokens(theme.palette.mode);
 
   const [data, setData] = useState([]);
+  const [lastNomor, setLastNomor] = useState(0);
 
   useEffect(() => {
     fetchData();
 
     // Set up websocket connection
-    const socket = io("ws://localhost:3001");
-    
+    const socket = io("ws://109.123.235.25:3001");
+
     // Listen for 'update' event from server
     socket.on('update', (newData) => {
-      setData(newData);
-      console.log(newData);
+      const updatedNomor = lastNomor + 1;
+      const updatedData = { ...newData, nomor: updatedNomor };
+      setData(data => [...data, updatedData]);
+      setLastNomor(updatedNomor);
+      console.log(updatedData);
     });
 
     // Clean up websocket connection
     return () => {
       socket.disconnect();
     };
-  }, []);
+  }, [lastNomor]);
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('http://103.246.107.35:3002/drone/data');
-      setData(response.data.data);
-      console.log(response.data)
+      const response = await axios.get('http://109.123.235.25:3001/drone/data');
+      const fetchedData = response.data.data;
+      const maxNomor = fetchedData.reduce((max, item) => item.nomor > max ? item.nomor : max, 0);
+      setData(fetchedData);
+      setLastNomor(maxNomor);
+      console.log(response.data);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
   };
 
   const columns = [
-    { field: "nomor", headerName: "No", align :"center", headerAlign: "center" },
+    { field: "nomor", headerName: "No", align: "center", headerAlign: "center" },
     { field: "id_iot", headerName: "ID IoT" },
-    { field: "timestamp", headerName: "Timestamp", flex: 0.5, align: "center", headerAlign: "center"},
-    { field: "longitude", headerName: "Longitude",},
-    { field: "latitude", headerName: "Latitude"},
+    { field: "timestamp", headerName: "Timestamp", flex: 0.5, align: "center", headerAlign: "center" },
+    { field: "longitude", headerName: "Longitude", },
+    { field: "latitude", headerName: "Latitude" },
     { field: "ch4", headerName: "CH4" },
     { field: "co2", headerName: "CO2" },
     { field: "n2o", headerName: "N2O" },
@@ -90,12 +97,20 @@ const Tables = () => {
           },
         }}
       >
+
         <DataGrid
+          rows={data.map((row, index) => ({ ...row, id: index }))} // Menambahkan properti id ke setiap baris
+          columns={columns}
+          components={{ Toolbar: GridToolbar }}
+          getRowId={(row) => row.id} // Menggunakan properti 'id' sebagai id
+        />
+
+        {/* <DataGrid
           rows={data}
           columns={columns}
           components={{ Toolbar: GridToolbar }}
           getRowId={(row) => row.nomor} // Menggunakan properti 'no' sebagai id
-        />
+        /> */}
 
       </Box>
     </Box>

@@ -1,5 +1,5 @@
 # Gunakan image node.js versi terbaru sebagai dasar
-FROM node:16
+FROM node:12
 
 # Set working directory di dalam container
 WORKDIR /usr/src/app
@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install dependencies
-RUN npm install
+RUN npm install 
 
 # Salin semua file yang ada di proyek Anda ke dalam working directory di dalam container
 COPY . .
