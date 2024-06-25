@@ -1,5 +1,4 @@
-<<<<<<< HEAD
 node_modules
-=======
-node_modules
->>>>>>> b840f88ccda34bb1c852e68e88a04d58e31a5260
+npm-debug.log
+Dockerfile
+.dockerignore

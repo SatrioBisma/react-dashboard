@@ -52,11 +52,11 @@ const Tables = () => {
     { field: "nomor", headerName: "No", align: "center", headerAlign: "center" },
     { field: "id_iot", headerName: "ID IoT" },
     { field: "timestamp", headerName: "Timestamp", flex: 0.5, align: "center", headerAlign: "center" },
-    { field: "longitude", headerName: "Longitude", },
-    { field: "latitude", headerName: "Latitude" },
+    { field: "long", headerName: "Longitude", },
+    { field: "lat", headerName: "Latitude" },
     { field: "ch4", headerName: "CH4" },
     { field: "co2", headerName: "CO2" },
-    { field: "n2o", headerName: "N2O" },
+    { field: "no2", headerName: "N2O" },
   ];
 
   return (
